@@ -11,21 +11,55 @@
         <h1>Kviz</h1>
     </div>
 
-    <div class = "start"></div>
+    <div class = "start">
+        <span class = "circle">
+            <img class = "icon" src="play.png" alt="Play">
+        </span>
+    </div>
 
 
     <div class = "settings">
+
+        
+        <div class = "category">
+            <select id="categorySelect">
+                <option disabled selected>Category</option>
+                <option value="music">Music</option>
+                <option value="sport_and_leisure">Sports and leisure</option>
+                <option value="film_and_tv">Film and TV</option>
+                <option value="arts_and_literature">Arts and literature</option>
+                <option value="history">History</option>
+                <option value="society_and_culture">Society and culture</option>
+                <option value="science">Science</option>
+                <option value="geography">Geography</option>
+                <option value="food_and_drink">Food and drink</option>
+                <option value="general_knowledge">General knowledge</option>
+            </select>
+        </div>
+        
         <div class = "limit">
-            <label for="slider">Broj Pitanja
-                <input type="range" id="slider" list = "markers">
-            </label>
+            <input type="range" id="slider" list = "markers">
             <p id = "sliderDisplay"></p>
             <datalist id="markers">
+                <option value="5"></option>
                 <option value="10"></option>
+                <option value="15"></option>
                 <option value="20"></option>
+                <option value="25"></option>
                 <option value="30"></option>
+                <option value="35"></option>
                 <option value="40"></option>
-              </datalist>
+                <option value="45"></option>
+            </datalist>
+        </div>
+
+        <div class = "difficulty">
+            <select id="difficultySelect">
+                <option disabled selected>Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
         </div>
     </div>
 </body>
