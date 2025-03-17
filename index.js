@@ -1,4 +1,7 @@
+
 import getData from "./query.js";
+
+let url = "https://the-trivia-api.com/v2/questions";
 
 const slider = document.querySelector("#slider");
 const sliderDisplay = document.querySelector("#sliderDisplay");
@@ -11,27 +14,33 @@ slider.min = 3;
 slider.value = 3;
 sliderDisplay.textContent = slider.value
 
-slider.addEventListener("input",()=>{
+slider.addEventListener("input", () => {
     sliderDisplay.textContent = slider.value;
 })
 
-playButton.addEventListener("click",()=>{
-    console.log(categorySelect.value,difficultySelect.value);
+playButton.addEventListener("click", async () => {
+    console.log(categorySelect.value, difficultySelect.value);
 
-    if(categorySelect.value!=="Category"){
-        if(difficultySelect.value!=="Difficulty"){
-            localStorage.limit = slider.value;
-            localStorage.category = categorySelect.value;
-            localStorage.difficulty = difficultySelect.value;
-            window.location="./game.html"
+    if (categorySelect.value !== "Category") {
+        if (difficultySelect.value !== "Difficulty") {
+
+            url += "?limit=" + slider.value + "&categories=" + categorySelect.value + "&difficulties=" + difficultySelect.value;
+
+            await getData(url);
+
+            if (localStorage.quiz === -1) {
+                alert("Error : API query failed.");
+            }
+            else {
+                window.location = "./game.html"
+            }
         }
         else alert("Please choose a difficulty.");
     }
     else alert("Please choose a category.");
 });
 
-let url = "https://the-trivia-api.com/v2/questions";
 
-url += "?limit=" + localStorage.limit + "&categories=" + localStorage.category + "&difficulties=" + localStorage.difficulty;
 
-getData(url);
+
+

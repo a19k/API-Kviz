@@ -1,0 +1,26 @@
+html{
+    height: 100%;
+    background-image:url(bg.jpg);
+    background-size:200%;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100%;
+    font-size: 1.5rem;
+}
+
+.heading{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.heading h1 {
+    margin: 0;
+}
+
