@@ -113,7 +113,7 @@ select:focus {
 }
 
 option {
-    background-color: rgb(132, 231, 132);
+    background-color: palegreen;
 }
 
 option:disabled {

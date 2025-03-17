@@ -49,7 +49,7 @@ radioA.addEventListener("change", () => {
     }
     clearInterval(timerID);
     setTimeout(() => { }, 1000);
-    i += 5 - (i % 5)
+    i += 20 - (i % 20)
     play();
 })
 
@@ -63,7 +63,7 @@ radioB.addEventListener("change", () => {
     }
     clearInterval(timerID);
     setTimeout(() => { }, 1000);
-    i += 5 - (i % 5)
+    i += 20 - (i % 20)
     play();
 })
 
@@ -77,7 +77,7 @@ radioC.addEventListener("change", () => {
     }
     clearInterval(timerID);
     setTimeout(() => { }, 1000);
-    i += 5 - (i % 5)
+    i += 20 - (i % 20)
     play();
 })
 
@@ -91,13 +91,13 @@ radioD.addEventListener("change", () => {
     }
     clearInterval(timerID);
     setTimeout(() => { }, 1000);
-    i += 5 - (i % 5)
+    i += 20 - (i % 20)
     play();
 })
 
 const nextQuestion = () => {
 
-    if (i / 5 >= length) {
+    if (i / 20 >= length) {
         clearInterval(timerID);
         timerField.textContent = 0;
         localStorage.score = score;
@@ -105,7 +105,7 @@ const nextQuestion = () => {
         window.location = "./result.html";
     }
 
-    if (i % 5 === 0) {
+    if (i % 20 === 0) {
         radioA.checked = false;
         radioB.checked = false;
         radioC.checked = false;
@@ -115,9 +115,9 @@ const nextQuestion = () => {
         answerFieldC.style.backgroundColor = "transparent"
         answerFieldD.style.backgroundColor = "transparent"
 
-        question = quiz[i / 5].question.text;
-        correctAnswer = quiz[i / 5].correctAnswer;
-        answers = quiz[i / 5].incorrectAnswers;
+        question = quiz[i / 20].question.text;
+        correctAnswer = quiz[i / 20].correctAnswer;
+        answers = quiz[i / 20].incorrectAnswers;
         answers.push(correctAnswer);
         randomSort(answers);
 
@@ -130,7 +130,7 @@ const nextQuestion = () => {
         answerFieldD.textContent = answers.pop();
     }
 
-    timerField.textContent = 5 - (i % 5);
+    timerField.textContent = 20 - (i % 20);
     i++;
 }
 
