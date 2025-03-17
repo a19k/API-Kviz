@@ -39,26 +39,6 @@ const randomSort = (array) => {
     }
 }
 
-
-
-radioA.addEventListener("change", () => {
-    if (answerFieldA.textContent === correctAnswer) {
-        score++;
-        answerFieldA.style.backgroundColor = "palegreen";
-    }
-    else {
-        answerFieldA.style.backgroundColor = "pink";
-    }
-})
-radioA.addEventListener("change", () => {
-    if (answerFieldA.textContent === correctAnswer) {
-        score++;
-        answerFieldA.style.backgroundColor = "palegreen";
-    }
-    else {
-        answerFieldA.style.backgroundColor = "pink";
-    }
-})
 radioA.addEventListener("change", () => {
     if (answerFieldA.textContent === correctAnswer) {
         score++;
@@ -103,7 +83,7 @@ radioC.addEventListener("change", () => {
 
 radioD.addEventListener("change", () => {
     if (answerFieldD.textContent === correctAnswer) {
-        score++;
+        score++;        
         answerFieldD.style.backgroundColor = "palegreen";
     }
     else {
@@ -121,6 +101,7 @@ const nextQuestion = () => {
         clearInterval(timerID);
         timerField.textContent = 0;
         localStorage.score = score;
+        
         window.location = "./result.html";
     }
 
