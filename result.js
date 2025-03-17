@@ -1,7 +1,7 @@
 
-
 const scoreDisplay = document.querySelector(".score");
 
+// slowdown for counting score
 let i = 0;
 const intervalID = setInterval(()=>{
     if(i>=localStorage.score)clearInterval(intervalID);
@@ -9,6 +9,7 @@ const intervalID = setInterval(()=>{
     i++;
 },200)
 
+//back to index.html
 const backButton = document.addEventListener("click",()=>{
     window.location = "./index.html"
 })

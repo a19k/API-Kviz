@@ -80,8 +80,10 @@ input[type="radio"]:checked {
     font-size: 2rem;
     font-weight: bold;
     background-color: palegreen;
-    border: 3px solid black;
-    width: 1em;
-    height: 1em;
-    text-align: center;
+    box-shadow: 3px 3px black;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

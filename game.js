@@ -1,7 +1,9 @@
 
+//parse questions to JSON from string in local storage
 const quiz = JSON.parse(localStorage.quiz);
-console.log(quiz);
 
+//html elements selector
+// answerField corresponds to radio
 const questionField = document.querySelector(".question-field");
 const answerFieldA = document.querySelector("#Aanswer");
 const answerFieldB = document.querySelector("#Banswer");
@@ -13,15 +15,18 @@ const radioC = document.querySelector("#C");
 const radioD = document.querySelector("#D");
 const timerField = document.querySelector(".timer");
 
+//amount of questions
 const length = quiz.length;
+
+//predefines data so listeners can use it
 let question;
 let correctAnswer;
 let answers
-
 let score = 0;
 let timerID;
 
-
+//array elements shuffle, Fisher-Yates(Knuth) algoritm according to stackOverflow
+//used to randomize correct answer distribution
 const randomSort = (array) => {
 
     let currentIndex = array.length;
@@ -39,6 +44,10 @@ const randomSort = (array) => {
     }
 }
 
+//EVENT LISTENERS FOR ABCD RADIO BUTTONS
+//marks green for correct, pink for incorrect
+//then stops the timer, waits for a second and starts from next question
+//sometimes skips question, idk why, maybe
 radioA.addEventListener("change", () => {
     if (answerFieldA.textContent === correctAnswer) {
         score++;
@@ -53,6 +62,7 @@ radioA.addEventListener("change", () => {
     play();
 })
 
+//same as A
 radioB.addEventListener("change", () => {
     if (answerFieldB.textContent === correctAnswer) {
         score++;
@@ -67,6 +77,7 @@ radioB.addEventListener("change", () => {
     play();
 })
 
+//same as A
 radioC.addEventListener("change", () => {
     if (answerFieldC.textContent === correctAnswer) {
         score++;
@@ -81,6 +92,7 @@ radioC.addEventListener("change", () => {
     play();
 })
 
+//same as A
 radioD.addEventListener("change", () => {
     if (answerFieldD.textContent === correctAnswer) {
         score++;        
@@ -95,8 +107,10 @@ radioD.addEventListener("change", () => {
     play();
 })
 
+//
 const nextQuestion = () => {
-
+    
+    //if time elapsed end quiz, go to result page, result.html
     if (i / 20 >= length) {
         clearInterval(timerID);
         timerField.textContent = 0;
@@ -105,6 +119,7 @@ const nextQuestion = () => {
         window.location = "./result.html";
     }
 
+    //every 20 seconds , reset html elements, display new question and answers
     if (i % 20 === 0) {
         radioA.checked = false;
         radioB.checked = false;
@@ -121,22 +136,23 @@ const nextQuestion = () => {
         answers.push(correctAnswer);
         randomSort(answers);
 
-        console.log(question, correctAnswer, answers);
-
-        questionField.textContent = question;
+        questionField.textContent = (Math.ceil(i/20)+1)+". "+question;
         answerFieldA.textContent = answers.pop();
         answerFieldB.textContent = answers.pop();
         answerFieldC.textContent = answers.pop();
         answerFieldD.textContent = answers.pop();
     }
 
+    //update timer and iterate
     timerField.textContent = 20 - (i % 20);
     i++;
 }
 
+//i is time counter, displays first question before timer makes it wait 20 seconds
 let i = 0;
 nextQuestion();
 
+//activates timer which activates next question every 20 seconds
 const play = () => {
     timerID = setInterval(nextQuestion, 1000);
 }

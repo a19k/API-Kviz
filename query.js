@@ -11,11 +11,9 @@ async function getData(url) {
         isFetching = false;
     
         const json = await response.json();
-        console.log(json);
         localStorage.setItem("quiz",JSON.stringify(json));
     }
     catch (error) {
-        console.error(error.message);
         return -1;
     }
     finally{
