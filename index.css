@@ -40,6 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor:pointer;
     transition: width 0.2s;
 }
 
@@ -88,6 +89,7 @@ body {
   margin-top: -6px;
   height: 1.5rem;
   width: 0.5rem;
+  cursor:pointer;
 }
 
 select {
@@ -96,6 +98,7 @@ select {
     height: 3rem;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    cursor:pointer;
     border: 0 black;
     border-radius: 2px;
     padding: 0.2rem;
