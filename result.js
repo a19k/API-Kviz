@@ -10,6 +10,7 @@ const intervalID = setInterval(()=>{
 },200)
 
 //back to index.html
-const backButton = document.addEventListener("click",()=>{
+const backButton = document.querySelector(".back")
+backButton.addEventListener("click",()=>{
     window.location = "./index.html"
 })
