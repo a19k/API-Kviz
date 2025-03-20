@@ -14,6 +14,7 @@ const radioB = document.querySelector("#B");
 const radioC = document.querySelector("#C");
 const radioD = document.querySelector("#D");
 const timerField = document.querySelector(".timer");
+const backButton = document.querySelector(".back")
 
 //amount of questions
 const length = quiz.length;
@@ -44,6 +45,11 @@ const randomSort = (array) => {
     }
 }
 
+//back to index.html
+backButton.addEventListener("click",()=>{
+    window.location = "./index.html"
+})
+
 //EVENT LISTENERS FOR ABCD RADIO BUTTONS
 //marks green for correct, pink for incorrect
 //then stops the timer, waits for a second and starts from next question
@@ -57,7 +63,6 @@ radioA.addEventListener("change", () => {
         answerFieldA.style.backgroundColor = "pink";
     }
     clearInterval(timerID);
-    setTimeout(() => { }, 1000);
     i += 20 - (i % 20)
     play();
 })
@@ -72,7 +77,6 @@ radioB.addEventListener("change", () => {
         answerFieldB.style.backgroundColor = "pink";
     }
     clearInterval(timerID);
-    setTimeout(() => { }, 1000);
     i += 20 - (i % 20)
     play();
 })
@@ -87,7 +91,6 @@ radioC.addEventListener("change", () => {
         answerFieldC.style.backgroundColor = "pink";
     }
     clearInterval(timerID);
-    setTimeout(() => { }, 1000);
     i += 20 - (i % 20)
     play();
 })
@@ -102,7 +105,6 @@ radioD.addEventListener("change", () => {
         answerFieldD.style.backgroundColor = "pink";
     }
     clearInterval(timerID);
-    setTimeout(() => { }, 1000);
     i += 20 - (i % 20)
     play();
 })
