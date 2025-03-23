@@ -1,7 +1,7 @@
 
 import getData from "./query.js";
 //common url
-let url = "https://the-trivia-api.com/v2/questions";
+const baseURL = "https://the-trivia-api.com/v2/questions";
 
 //interactive html elements
 const slider = document.querySelector("#slider");
@@ -28,19 +28,21 @@ playButton.addEventListener("click", async () => {
     if (categorySelect.value !== "Category") {
         if (difficultySelect.value !== "Difficulty") {
 
+            //saving settings for verification
+            localStorage.setItem("category", categorySelect.value);
+            localStorage.setItem("difficulty", difficultySelect.value);
+            localStorage.setItem("limit", slider.value);
+
             //modify url to user's settings
-            url += "?limit=" + slider.value + "&categories=" + categorySelect.value + "&difficulties=" + difficultySelect.value;
+            let url = baseURL + "?limit=" + slider.value + "&categories=" + categorySelect.value + "&difficulties=" + difficultySelect.value;
 
             //getData fetches data from trivia API
             await getData(url);
 
             //if no error, change page to game.html
-            if (localStorage.quiz === -1) {
-                alert("Error : API query failed.");
-            }
-            else {
-                window.location = "./game.html"
-            }
+            const errorCode = verifyData();
+            if (errorCode === 0) window.location = "./game.html";
+            else displayWarning(errorCode);
         }
         else alert("Please choose a difficulty.");
     }
@@ -48,6 +50,56 @@ playButton.addEventListener("click", async () => {
 });
 
 
+const verifyData = () => {
+    const quiz = JSON.parse(localStorage.quiz);
+    let errorCode = 0;
 
+    //check for fetch error
+    if (quiz === -1) {
+        errorCode = 1;
+        //log
+        return errorCode;
+    }
 
+    //check for incorrect data format
+    if (!Array.isArray(quiz)) {
+        errorCode = 2;
+        //log
+        return errorCode;
+    }
 
+    //check for incorrect amount of questions
+    if (quiz.length !== Number(localStorage.limit)) {
+        errorCode = 3;
+        //log
+        return errorCode;
+    }
+
+    //check for incorrect category and difficulty of each question
+    for(let i = 0; i < quiz.length ; i++){
+        if (quiz[i].category !== localStorage.category) {
+            errorCode = 4;
+            return errorCode;
+        }
+        if (quiz[i].difficulty !== localStorage.difficulty) {
+            errorCode = 5;
+            return errorCode;
+        }
+    }
+
+    return errorCode;
+}
+
+const displayWarning = (errorCode)=>{
+    const warning = document.querySelector(".warning");
+    const warningContent = document.querySelector(".warning-content");
+
+    //show warning modal
+    warning.style.display = "flex";
+    warningContent.textContent = "An error occured while fetching questions" + " : " + errorCode;
+
+    //reload page on click
+    warning.addEventListener("click",()=>{
+        window.location.reload();
+    })
+}

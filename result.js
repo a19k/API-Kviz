@@ -5,7 +5,7 @@ const scoreDisplay = document.querySelector(".score");
 let i = 0;
 const intervalID = setInterval(()=>{
     if(i>=localStorage.score)clearInterval(intervalID);
-    scoreDisplay.textContent = i;
+    scoreDisplay.textContent = i + "/" + localStorage.limit;
     i++;
 },200)
 

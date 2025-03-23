@@ -14,7 +14,7 @@ async function getData(url) {
         localStorage.setItem("quiz",JSON.stringify(json));
     }
     catch (error) {
-        return -1;
+        localStorage.setItem("quiz",JSON.stringify(-1));
     }
     finally{
         isFetching = false;

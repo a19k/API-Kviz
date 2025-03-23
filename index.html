@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,22 +7,22 @@
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <div class = "heading">
+    <div class="heading">
         <h1>Quiz</h1>
     </div>
 
-    <div class = "start">
-        <span class = "circle">
-            <img class = "icon" src="play.png" alt="Play">
+    <div class="start">
+        <span class="circle">
+            <img class="icon" src="play.png" alt="Play">
         </span>
     </div>
 
 
-    <div class = "settings">
-
+    <div class="settings">
         
-        <div class = "category">
+        <div class="category">
             <select id="categorySelect">
                 <option disabled selected>Category</option>
                 <option value="music">Music</option>
@@ -36,10 +37,10 @@
                 <option value="general_knowledge">General knowledge</option>
             </select>
         </div>
-        
-        <div class = "limit">
-            <input type="range" id="slider" list = "markers">
-            <p id = "sliderDisplay"></p>
+
+        <div class="limit">
+            <input type="range" id="slider" list="markers">
+            <p id="sliderDisplay"></p>
             <datalist id="markers">
                 <option value="5"></option>
                 <option value="10"></option>
@@ -53,7 +54,7 @@
             </datalist>
         </div>
 
-        <div class = "difficulty">
+        <div class="difficulty">
             <select id="difficultySelect">
                 <option disabled selected>Difficulty</option>
                 <option value="easy">Easy</option>
@@ -62,5 +63,10 @@
             </select>
         </div>
     </div>
+
+    <div class="warning">
+        <div class="warning-content"></div>
+    </div>
 </body>
+
 </html>
